@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Login from "./components/login.component";
 import SignUp from "./components/signup.component";
+import Post from "./components/Post/Post";
 
 function App() {
   const initialValues = { fname: "", laname: "", email: "", password: "" };
@@ -76,11 +77,12 @@ function App() {
         </nav>
 
         <div className="auth-wrapper">
-          <div className="auth-inner">
+          <div >
             <Switch>
               <Route exact path="/" component={Login} />
               <Route path="/sign-in" component={Login} />
               <Route path="/sign-up" component={SignUp} />
+              <Route path="/post" component={Post} />
             </Switch>
           </div>
         </div>
