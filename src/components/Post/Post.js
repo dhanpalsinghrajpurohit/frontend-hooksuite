@@ -23,6 +23,7 @@ class Post extends Component{
         this.AuthUrl = this.AuthUrl.bind(this);
         this.uploaddata = this.uploaddata.bind(this);
         this.authUser =  this.authUser.bind(this);
+        this.uploaddata_instagram = this.uploaddata_instagram.bind(this);
       }
       
       Title(event) {
@@ -53,25 +54,33 @@ class Post extends Component{
     }
 
     uploaddata = async (event)=>{
-        alert("dfjkdf");
         event.preventDefault();
         const file = document.querySelector('input[type="file"]').files[0];
         let data = new FormData();
         data.append("file",this.state.File);
         data.append("title",this.state.Title);
-        data.append("description",this.state.Description);
-        // console.log(this.state.File);
-        // console.log(this.state.Title);
-        // console.log(this.state.Description);
-       
-          let res = await axios.post('http://localhost:5000/upload',data);
-          if(res.data.message){
-            this.setState({Message:res.data.message});
-          }else {
-            this.setState({Message:res.data.message});
-          }
-     
-      }
+        data.append("description",this.state.Description);      
+        let res = await axios.post('http://localhost:5000/upload',data);
+        if(res.data.message){
+          this.setState({Message:res.data.message});
+        }else {
+          this.setState({Message:res.data.message});
+        }
+    }
+
+    uploaddata_instagram = async(event) =>{
+      event.preventDefault();
+      let data = new FormData();
+      data.append("file",this.state.File);
+      data.append("title",this.state.Title);
+      data.append("description",this.state.Description);  
+      console.log(this.state.File);
+      console.log(data);
+      axios.post('http://127.0.0.1:5000/instagram',data)
+        .then((response)=>{
+          console.log(response);
+        })
+    }
 
    
     
@@ -125,7 +134,34 @@ class Post extends Component{
                     <div className="col-lg-6 offset-lg-3">
                       {alertBox}
                         <div className="row justify-content-center">
-                        <form onSubmit={this.uploaddata} method="POST" encType="multipart/form-data" onLoad={this.checkStatus}>
+                        <ul class="nav nav-pills nav-justified">
+                          <li className="nav-item">
+                            <a className="nav-link active" aria-current="page" href="#">Twitter</a>
+                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+
+                          </li>
+                          <li className="nav-item">
+                            <a className="nav-link" href="#">Facebook</a>
+                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+
+                          </li>
+                          <li className="nav-item">
+                            <a className="nav-link" href="#">Linkedln</a>
+                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+
+                          </li>
+                          <li className="nav-item">
+                            <a className="nav-link" href="#">Instagram</a>
+                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+
+                          </li>
+                          <li className="nav-item">
+                            <a className="nav-link" href="#">Youtube</a>
+                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+
+                          </li>
+                        </ul>
+                        <form onSubmit={this.uploaddata_instagram} method="POST" encType="multipart/form-data">
                             <div className="form-group">
                                 <label for="txt_title">Title</label>
                                 <input type="text" className="form-control" id="txt_title" onChange={this.Title} />
