@@ -1,13 +1,15 @@
 import React, {Component} from "react";
 import axios from "axios";
 import { withRouter } from "react-router";
+import { useState } from "react";
 
 class Post extends Component{
   
     constructor(props) {
         super(props);
-       this.Message = null;
-       this.authUrl = null;
+        this.Message = null;
+        this.authUrl = null;
+        this.form = null;
         this.state={
             Title:null,
             Description:null,
@@ -15,6 +17,7 @@ class Post extends Component{
             Tags:"testing",
             Message:null,
             authUrl:'',
+            toggleStage:1
         }
         
         this.Title = this.Title.bind(this);  
@@ -24,26 +27,26 @@ class Post extends Component{
         this.uploaddata = this.uploaddata.bind(this);
         this.authUser =  this.authUser.bind(this);
         this.uploaddata_instagram = this.uploaddata_instagram.bind(this);
-      }
+    }
       
-      Title(event) {
+    Title(event) {
         this.setState({ Title: event.target.value })
-      } 
-      AuthUrl(value){
+    } 
+    AuthUrl(value){
         this.setState({authUrl:value});
-      }
+    }
       
-      Description(event) {
-        this.setState({ Description: event.target.value })
-      }
-      File(event) {
-        this.setState({ File: event.target.files[0] })
-      }
+    Description(event) {
+      this.setState({ Description: event.target.value })
+    }
+    File(event) {
+      this.setState({ File: event.target.files[0] })
+    }
       componentDidMount() {
         if(this.count==0){
           window.addEventListener('load', this.authUser);
-          
         }
+        this.loadTwiiterForm();
      }
     authUser = async (event) =>{
       event.preventDefault();
@@ -111,6 +114,122 @@ class Post extends Component{
       console.log(res);
     }
 
+    loadInstagramForm = () =>{
+      this.setState({form:(
+      <div className="mx-auto">
+            <form onSubmit="" method="POST" encType="multipart/form-data">
+            <div className="form-group">
+                <label for="txt_title">Description</label>
+                <input type="text" className="form-control" id="txt_title" onChange={this.Title} />
+            </div>
+            <div className="form-group">
+                <label for="input_file">Select Your Post</label>
+                <input type="file" className="form-control-file" id="input_file" onChange={this.File}/>
+            </div>
+            <button className="btn btn-primary" type="submit">Publish</button>
+            </form>
+      </div>
+      )});
+    }
+
+    loadYoutubeForm = () => {
+      this.setState({form:(
+      <div className="mx-auto">
+            <form onSubmit="" method="POST" encType="multipart/form-data">
+            <div className="form-group">
+                <label for="txt_title">Title</label>
+                <input type="text" className="form-control" id="txt_title" onChange={this.Title} />
+            </div>
+            <div className="form-group">
+                <label for="txt_title">Description</label>
+                <input type="text" className="form-control" id="txt_title" onChange={this.Title} />
+            </div>
+            <div className="form-group">
+                <label for="input_file">Select Your Post</label>
+                <input type="file" className="form-control-file" id="input_file" onChange={this.File}/>
+            </div>
+            <button className="btn btn-primary" type="submit">Publish</button>
+            {console.log(this.authUser)}
+            {this.authUser}
+            </form>
+      </div>
+      )});
+    }
+
+    loadLinkedlnForm = () =>{
+      this.setState({form:(
+      <div className="mx-auto">
+            <form onSubmit="" method="POST" encType="multipart/form-data">
+            <div className="form-group">
+                <label for="txt_title">Description</label>
+                <input type="text" className="form-control" id="txt_title" onChange={this.Title} />
+            </div>
+            <div className="form-group">
+                <label for="input_file">Select Your Post</label>
+                <input type="file" className="form-control-file" id="input_file" onChange={this.File}/>
+            </div>
+            <button className="btn btn-primary" type="submit">Publish</button>
+            </form>
+      </div>
+      )});
+    }
+
+    loadFacebookForm = () => {
+      this.setState({form:(
+      <div className="mx-auto">
+            <form onSubmit="" method="POST" encType="multipart/form-data">
+            <div className="form-group">
+                <label for="txt_title">Description</label>
+                <input type="text" className="form-control" id="txt_title" onChange={this.Title} />
+            </div>
+            <div className="form-group">
+                <label for="input_file">Select Your Post</label>
+                <input type="file" className="form-control-file" id="input_file" onChange={this.File}/>
+            </div>
+            <button className="btn btn-primary" type="submit">Publish</button>
+            </form>
+      </div>
+      )});
+    }
+
+    loadTwiiterForm = () => {
+      this.setState({form:(
+      <div className="mx-auto">
+            <form onSubmit="" method="POST" encType="multipart/form-data">
+            <div className="form-group">
+                <label for="txt_title">Description</label>
+                <input type="text" className="form-control" id="txt_title" onChange={this.Title} />
+            </div>
+            <div className="form-group">
+                <label for="input_file">Select Your Post</label>
+                <input type="file" className="form-control-file" id="input_file" onChange={this.File}/>
+            </div>
+            <button className="btn btn-primary" type="submit">Publish</button>
+            </form>
+      </div>
+      )});
+    }
+    
+    toggleTab = (index) =>{
+      this.setState({toggleStage:index});
+      switch(index){
+        case 2:
+              this.loadFacebookForm();
+              break;
+        case 3:
+              this.loadLinkedlnForm();
+              break;
+        case 4:
+              this.loadInstagramForm();
+              break;
+        case 5:
+              this.loadYoutubeForm();
+              break;
+        default:
+              this.loadTwiiterForm();
+      }
+    }
+
     render(){
         let tags = null;
         let alertBox = null;
@@ -128,81 +247,79 @@ class Post extends Component{
         if(!this.state.authUrl){
           authButton = (<button className="btn btn-primary" onClick={this.authUser}>Auth</button>)
         }
+        
+
         return(
             <React.Fragment>
                 <div className="container-fluid">
-                    <div className="col-lg-6 offset-lg-3">
+                    <div className="col-4 offset-lg-2 mx-auto">
                       {alertBox}
-                        <div className="row justify-content-center">
+                      <div>
                         <ul class="nav nav-pills nav-justified">
                           <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Twitter</a>
-                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+                          <button className={this.state.toggleStage==1?"nav-link active":"nav-link "} 
+                              id="pills-contact-tab" 
+                              data-bs-toggle="pill" 
+                              data-bs-target="#pills-contact" 
+                              type="button" role="tab" 
+                              aria-controls="pills-contact" 
+                              aria-selected="false"
+                              onClick={() => this.toggleTab(1)}>Twitter</button>
+                          </li>
+
+                          <li className="nav-item">
+                          <button className={this.state.toggleStage==2?"nav-link active":"nav-link "} 
+                              id="pills-contact-tab" 
+                              data-bs-toggle="pill" 
+                              data-bs-target="#pills-contact" 
+                              type="button" role="tab" 
+                              aria-controls="pills-contact" 
+                              aria-selected="false"
+                              onClick={() => this.toggleTab(2)}>Facebook</button>
 
                           </li>
                           <li className="nav-item">
-                            <a className="nav-link" href="#">Facebook</a>
-                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+                          <button className={this.state.toggleStage==3?"nav-link active":"nav-link "} 
+                              id="pills-contact-tab" 
+                              data-bs-toggle="pill" 
+                              data-bs-target="#pills-contact" 
+                              type="button" role="tab" 
+                              aria-controls="pills-contact" 
+                              aria-selected="false"
+                              onClick={() => this.toggleTab(3)}>Linkedln</button>
 
                           </li>
                           <li className="nav-item">
-                            <a className="nav-link" href="#">Linkedln</a>
-                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+                          <button className={this.state.toggleStage==4?"nav-link active":"nav-link "} 
+                            id="pills-contact-tab" 
+                            data-bs-toggle="pill" 
+                            data-bs-target="#pills-contact" 
+                            type="button" 
+                            role="tab" 
+                            aria-controls="pills-contact" 
+                            aria-selected="false"
+                            onClick={() => this.toggleTab(4)}>Instagram</button>
 
                           </li>
                           <li className="nav-item">
-                            <a className="nav-link" href="#">Instagram</a>
-                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
-
-                          </li>
-                          <li className="nav-item">
-                            <a className="nav-link" href="#">Youtube</a>
-                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+                          <button className={this.state.toggleStage==5?"nav-link active":"nav-link "} 
+                            id="pills-contact-tab" 
+                            data-bs-toggle="pill" 
+                            data-bs-target="#pills-contact" 
+                            type="button" role="tab" 
+                            aria-controls="pills-contact" 
+                            aria-selected="false"
+                            onClick={() => this.toggleTab(5)}>Youtube</button>
 
                           </li>
                         </ul>
-                        <form onSubmit={this.uploaddata_instagram} method="POST" encType="multipart/form-data">
-                            <div className="form-group">
-                                <label for="txt_title">Title</label>
-                                <input type="text" className="form-control" id="txt_title" onChange={this.Title} />
-                            </div>
-                            <div className="form-group form-check">
-                                <div>
-                                    <input type="checkbox" className="form-check-input" id="cb_twitter" />
-                                    <label className="form-check-label" for="cb_twitter">Twitter</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" className="form-check-input" id="cb_facebook" />
-                                    <label className="form-check-label" for="cb_facebook">Facebook</label>    
-                                </div>
-                                <div>
-                                    <input type="checkbox" className="form-check-input" id="cb_linkedln" />
-                                    <label className="form-check-label" for="cb_linkedln">Linkedln</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" className="form-check-input" id="cb_youtube" />
-                                    <label className="form-check-label" for="cb_youtube">Youtube</label>
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <label for="input_file">Select Your Post</label>
-                                <input type="file" className="form-control-file" id="input_file" onChange={this.File}/>
-                            </div>
-                            <div className="form-group">
-                                <label for="txt_description">Description</label>
-                                <textarea className="form-control" id="txt_description" rows="3" onChange={this.Description}></textarea>
-                            </div>
-                            <button className="btn btn-primary" type="submit">Publish</button>
-                             
-                            {/* <button className="btn btn-primary" onClick={this.callback}>callbakc</button> */}
-                        </form>
-                        
+                      </div>
+                        <div className="justify-content-center">
+                          {this.state.form}
                         </div>
-                        
-                        {authButton}
+                        {/* {authButton} */}
                     </div>
                 </div>
-
             </React.Fragment>
         );
 
