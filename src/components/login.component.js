@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+import './login.module.css';
 export default class Login extends Component {
   constructor() {
       super();
@@ -33,7 +34,6 @@ export default class Login extends Component {
         })
         }).then((Response) => Response.json())
             .then((result) => {
-                console.log(result);
                 if (result.status == 400)
                     alert('Invalid User');
                 else
@@ -43,55 +43,58 @@ export default class Login extends Component {
 
   render() {
     return (
-      <form method="POST" onSubmit={this.login}>
-        <h3>Log In</h3>
+        <div className="loginForm">
+          <form method="POST" onSubmit={this.login}>
+          <h3>Log In</h3>
 
-        <div className="form-group">
-          <label>Username</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Enter username"
-            onChange = {this.Email}
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Enter password"
-            onChange = {this.Password}
-          />
-        </div>
-
-        {<div className="form-group">
-          <div className="custom-control custom-checkbox">
+          <div className="form-group">
+            <label>Username</label>
             <input
-              type="checkbox"
-              className="custom-control-input"
-              id="customCheck1"
+              type="text"
+              className="form-control"
+              placeholder="Enter username"
+              onChange = {this.Email}
             />
-            <label className="custom-control-label" htmlFor="customCheck1">
-              Remember me
-            </label>
           </div>
-        </div>}
 
-        <button type="submit" className="btn btn-primary btn-block">
-          <b>Log In</b>
-        </button>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Enter password"
+              onChange = {this.Password}
+            />
+          </div>
 
-        <Link className="nav-link" to={"/sign-up"}>
-          <button type="submit" className="btn btn btn-block btn-signup">
-            SignUp Now
+          {<div className="form-group">
+            <div className="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                id="customCheck1"
+              />
+              <label className="custom-control-label" htmlFor="customCheck1">
+                Remember me
+              </label>
+            </div>
+          </div>}
+
+          <button type="submit" className="btn btn-primary btn-block">
+            <b>Log In</b>
           </button>
-        </Link>
-        <p className="forgot-password text-right">
-          Forgot <a href="#">password?</a>
-        </p>
-      </form>
+
+          <Link className="nav-link" to={"/sign-up"}>
+            <button type="submit" className="btn btn btn-block btn-signup">
+              SignUp Now
+            </button>
+          </Link>
+          <p className="forgot-password text-right">
+            Forgot <a href="#">password?</a>
+          </p>
+          </form>
+        </div>
+        
     );
   }
   // handleClick(event){

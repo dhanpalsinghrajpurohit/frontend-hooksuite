@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import Login from "./components/login.component";
 import SignUp from "./components/signup.component";
 import Post from "./components/Post/Post";
-
+import Dashboard from "./components/Dashboard/Dashboard";
 function App() {
   const initialValues = { fname: "", laname: "", email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
@@ -27,7 +27,6 @@ function App() {
   useEffect(() => {
     console.log(formValues);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
     }
   }, [formErrors]);
   const validate = (values) => {
@@ -82,6 +81,7 @@ function App() {
               <Route exact path="/" component={Login} />
               <Route path="/sign-in" component={Login} />
               <Route path="/sign-up" component={SignUp} />
+              <Route path="/dashboard" component={Dashboard} />
               <Route path="/post" component={Post} />
             </Switch>
           </div>

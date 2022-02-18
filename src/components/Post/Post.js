@@ -76,14 +76,17 @@ class Post extends Component{
       let data = new FormData();
       data.append("file",this.state.File);
       data.append("title",this.state.Title);
-      data.append("description",this.state.Description);  
       console.log(this.state.File);
       console.log(data);
-      axios.post('http://127.0.0.1:5000/instagram',data)
+      await axios.post('http://127.0.0.1:5000/instagram',data)
         .then((response)=>{
           console.log(response);
+        }).catch(error=>{
+          this.setState({Message:"Something went wrong!!!"});
         })
-    }
+          
+      };
+    
 
    
     
@@ -117,9 +120,9 @@ class Post extends Component{
     loadInstagramForm = () =>{
       this.setState({form:(
       <div className="mx-auto">
-            <form onSubmit="" method="POST" encType="multipart/form-data">
+            <form onSubmit={this.uploaddata_instagram} method="POST" encType="multipart/form-data">
             <div className="form-group">
-                <label for="txt_title">Description</label>
+                <label for="txt_title">Caption</label>
                 <input type="text" className="form-control" id="txt_title" onChange={this.Title} />
             </div>
             <div className="form-group">
