@@ -1,6 +1,8 @@
 import React, { Component, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+import "../../index.css";
+
 export default class Login extends Component {
   constructor() {
       super();
@@ -39,10 +41,11 @@ export default class Login extends Component {
                 else
                     this.props.history.push("/Dashboard");
             })
-      }
+    }
 
   render() {
     return (
+      <div className="auth-wrapper">
       <form method="POST" onSubmit={this.login}>
         <h3>Log In</h3>
 
@@ -92,66 +95,8 @@ export default class Login extends Component {
           Forgot <a href="#">password?</a>
         </p>
       </form>
+      </div>
+      
     );
   }
-  // handleClick(event){
-  //   var apiBaseUrl = "http://localhost:5000/signin/";
-  //   var self = this;
-    
-  //   var payload={
-  //   "email":this.state.username,
-  //   "password":this.state.password
-  //   }
-  //   console.log(payload);
-  //   alert(payload);
-  //   // axios.post(apiBaseUrl+'login', payload)
-  //   // .then(function (response) {
-  //   // console.log(response);
-  //   // if(response.data.code == 200){
-  //   // console.log("Login successfull");
-  //   // var uploadScreen=[];
-  //   // uploadScreen.push(<UploadScreen appContext={self.props.appContext}/>)
-  //   // self.props.appContext.setState({loginPage:[],uploadScreen:uploadScreen})
-  //   // }
-  //   // else if(response.data.code == 204){
-  //   // console.log("Username password do not match");
-  //   // alert("username password do not match")
-  //   // }
-  //   // else{
-  //   // console.log("Username does not exists");
-  //   // alert("Username does not exist");
-  //   // }
-  //   // })
-  //   // .catch(function (error) {
-  //   // console.log(error);
-  //   // });
-  //   }
-  
-
-  
-  
 }
-
-
-// export function PostData(userData) {
-//   let BaseUrl = "http://localhost:5000/signin/";
-//   console.log("userData", userData);
-
-//   return new Promise((resolve, reject) => {
-//   fetch(BaseUrl, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Accept: "application/json"
-//     }
-//     // body: JSON.stringify(userData)
-//   })
-//     .then(response => response.json())
-//     .then(responseJson => {
-//       resolve(responseJson);
-//     })
-//     .catch(error => {
-//       reject(error);
-//     });
-//   });
-// }

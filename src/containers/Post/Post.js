@@ -3,6 +3,8 @@ import axios from "axios";
 import { withRouter } from "react-router";
 import { useState } from "react";
 
+import Navbar from "../../components/Navbar/Navbar";
+
 class Post extends Component{
   
     constructor(props) {
@@ -251,6 +253,7 @@ class Post extends Component{
 
         return(
             <React.Fragment>
+                <Navbar />
                 <div className="container-fluid">
                     <div className="col-4 offset-lg-2 mx-auto">
                       {alertBox}

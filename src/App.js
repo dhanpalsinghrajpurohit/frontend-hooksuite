@@ -3,9 +3,10 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Login from "./components/login.component";
-import SignUp from "./components/signup.component";
-import Post from "./components/Post/Post";
+import Login from "./containers/Authentication/login.component";
+import SignUp from "./containers/Authentication/signup.component";
+import Post from "./containers/Post/Post";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   const initialValues = { fname: "", laname: "", email: "", password: "" };
@@ -51,11 +52,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+        {/* <nav className="navbar navbar-expand-lg navbar-light fixed-top">
           <div className="container">
-            <Link className="navbar-brand" to={"/sign-in"}>
-              Hoot Suite
-            </Link>
             {/* <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
@@ -69,23 +67,21 @@ function App() {
                   </Link>
                 </li>
               </ul>
-            </div> */}
-            <div>
-              <ul className="tagline">Your All in One Platform...</ul>
-            </div>
+            </div> }
           </div>
-        </nav>
+        </nav> */}
 
-        <div className="auth-wrapper">
+        {/* <div className="auth-wrapper"> */}
           <div >
             <Switch>
               <Route exact path="/" component={Login} />
               <Route path="/sign-in" component={Login} />
               <Route path="/sign-up" component={SignUp} />
               <Route path="/post" component={Post} />
+              <Route path="/post" component={Post} />
             </Switch>
           </div>
-        </div>
+        {/* </div> */}
       </div>
     </Router>
   );
