@@ -41,7 +41,6 @@ export default class SignUp extends Component {
 
   signup(event){
     event.preventDefault();
-    console.log(this.state.Email);
     alert(this.state.FirstName);
     fetch('http://localhost:5000/signup', {
         method: 'post',
@@ -58,7 +57,6 @@ export default class SignUp extends Component {
         })
         }).then((Response) => Response.json())
             .then((result) => {
-                console.log(result);
                 if (result.status == 400)
                     alert('Invalid User');
                 else

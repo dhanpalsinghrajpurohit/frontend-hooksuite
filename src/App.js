@@ -3,11 +3,18 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+<<<<<<< HEAD
 import Login from "./containers/Authentication/login.component";
 import SignUp from "./containers/Authentication/signup.component";
 import Post from "./containers/Post/Post";
 import Navbar from "./components/Navbar/Navbar";
 
+=======
+import Login from "./components/login.component";
+import SignUp from "./components/signup.component";
+import Post from "./components/Post/Post";
+import Dashboard from "./components/Dashboard/Dashboard";
+>>>>>>> 014d4eb1ca0efd9deee40cd7abd2f60e72891145
 function App() {
   const initialValues = { fname: "", laname: "", email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
@@ -28,7 +35,6 @@ function App() {
   useEffect(() => {
     console.log(formValues);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
     }
   }, [formErrors]);
   const validate = (values) => {
@@ -77,6 +83,7 @@ function App() {
               <Route exact path="/" component={Login} />
               <Route path="/sign-in" component={Login} />
               <Route path="/sign-up" component={SignUp} />
+              <Route path="/dashboard" component={Dashboard} />
               <Route path="/post" component={Post} />
               <Route path="/post" component={Post} />
             </Switch>
