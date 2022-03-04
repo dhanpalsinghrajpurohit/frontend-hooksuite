@@ -1,0 +1,14 @@
+.loginForm{
+    padding: 5%;
+    font-size: large;
+    width: 50%;
+    margin: 5% 25% 5% ;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: aliceblue;
+    border-radius: 1%;
+}
+
+.loginForm:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}

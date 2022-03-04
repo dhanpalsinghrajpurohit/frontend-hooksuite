@@ -4,7 +4,7 @@ import { withRouter } from "react-router";
 import { useState } from "react";
 
 import Navbar from "../../components/Navbar/Navbar";
-
+import classes from "./Post.module.css";
 class Post extends Component{
   
     constructor(props) {
@@ -257,69 +257,69 @@ class Post extends Component{
         return(
             <React.Fragment>
                 <Navbar />
-                <div className="container-fluid">
+                <div className={classes.postForm}>
                     <div className="col-4 offset-lg-2 mx-auto">
-                      {alertBox}
-                      <div>
-                        <ul class="nav nav-pills nav-justified">
-                          <li className="nav-item">
-                          <button className={this.state.toggleStage==1?"nav-link active":"nav-link "} 
+                        {alertBox}
+                        <div>
+                          <ul class="nav nav-pills nav-justified">
+                            <li className="nav-item">
+                            <button className={this.state.toggleStage==1?"nav-link active":"nav-link "} 
+                                id="pills-contact-tab" 
+                                data-bs-toggle="pill" 
+                                data-bs-target="#pills-contact" 
+                                type="button" role="tab" 
+                                aria-controls="pills-contact" 
+                                aria-selected="false"
+                                onClick={() => this.toggleTab(1)}>Twitter</button>
+                            </li>
+
+                            <li className="nav-item">
+                            <button className={this.state.toggleStage==2?"nav-link active":"nav-link "} 
+                                id="pills-contact-tab" 
+                                data-bs-toggle="pill" 
+                                data-bs-target="#pills-contact" 
+                                type="button" role="tab" 
+                                aria-controls="pills-contact" 
+                                aria-selected="false"
+                                onClick={() => this.toggleTab(2)}>Facebook</button>
+
+                            </li>
+                            <li className="nav-item">
+                            <button className={this.state.toggleStage==3?"nav-link active":"nav-link "} 
+                                id="pills-contact-tab" 
+                                data-bs-toggle="pill" 
+                                data-bs-target="#pills-contact" 
+                                type="button" role="tab" 
+                                aria-controls="pills-contact" 
+                                aria-selected="false"
+                                onClick={() => this.toggleTab(3)}>Linkedln</button>
+
+                            </li>
+                            <li className="nav-item">
+                            <button className={this.state.toggleStage==4?"nav-link active":"nav-link "} 
+                              id="pills-contact-tab" 
+                              data-bs-toggle="pill" 
+                              data-bs-target="#pills-contact" 
+                              type="button" 
+                              role="tab" 
+                              aria-controls="pills-contact" 
+                              aria-selected="false"
+                              onClick={() => this.toggleTab(4)}>Instagram</button>
+
+                            </li>
+                            <li className="nav-item">
+                            <button className={this.state.toggleStage==5?"nav-link active":"nav-link "} 
                               id="pills-contact-tab" 
                               data-bs-toggle="pill" 
                               data-bs-target="#pills-contact" 
                               type="button" role="tab" 
                               aria-controls="pills-contact" 
                               aria-selected="false"
-                              onClick={() => this.toggleTab(1)}>Twitter</button>
-                          </li>
+                              onClick={() => this.toggleTab(5)}>Youtube</button>
 
-                          <li className="nav-item">
-                          <button className={this.state.toggleStage==2?"nav-link active":"nav-link "} 
-                              id="pills-contact-tab" 
-                              data-bs-toggle="pill" 
-                              data-bs-target="#pills-contact" 
-                              type="button" role="tab" 
-                              aria-controls="pills-contact" 
-                              aria-selected="false"
-                              onClick={() => this.toggleTab(2)}>Facebook</button>
-
-                          </li>
-                          <li className="nav-item">
-                          <button className={this.state.toggleStage==3?"nav-link active":"nav-link "} 
-                              id="pills-contact-tab" 
-                              data-bs-toggle="pill" 
-                              data-bs-target="#pills-contact" 
-                              type="button" role="tab" 
-                              aria-controls="pills-contact" 
-                              aria-selected="false"
-                              onClick={() => this.toggleTab(3)}>Linkedln</button>
-
-                          </li>
-                          <li className="nav-item">
-                          <button className={this.state.toggleStage==4?"nav-link active":"nav-link "} 
-                            id="pills-contact-tab" 
-                            data-bs-toggle="pill" 
-                            data-bs-target="#pills-contact" 
-                            type="button" 
-                            role="tab" 
-                            aria-controls="pills-contact" 
-                            aria-selected="false"
-                            onClick={() => this.toggleTab(4)}>Instagram</button>
-
-                          </li>
-                          <li className="nav-item">
-                          <button className={this.state.toggleStage==5?"nav-link active":"nav-link "} 
-                            id="pills-contact-tab" 
-                            data-bs-toggle="pill" 
-                            data-bs-target="#pills-contact" 
-                            type="button" role="tab" 
-                            aria-controls="pills-contact" 
-                            aria-selected="false"
-                            onClick={() => this.toggleTab(5)}>Youtube</button>
-
-                          </li>
-                        </ul>
-                      </div>
+                            </li>
+                          </ul>
+                        </div>
                         <div className="justify-content-center">
                           {this.state.form}
                         </div>

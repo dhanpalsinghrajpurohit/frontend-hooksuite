@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+import classes from "./login.module.css";
 export default class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -66,7 +67,8 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <form onSubmit={this.signup} method="POST">
+      <div className={classes.loginForm}>
+          <form onSubmit={this.signup} method="POST">
         <h3>Sign Up</h3>
         <div className="form-group">
           <label>Username</label>
@@ -122,13 +124,13 @@ export default class SignUp extends Component {
         </button>
         <p className="forgot-password text-right">
           Already registered ?
-          {/* <Link className="nav-link" to={"/sign-in"}>
-            Log In <a href="#">Now</a>
-          </Link> */}
-          
-
+        <Link className="nav-link" to={"/sign-in"}>
+          Log In
+        </Link>
         </p>
       </form>
+      </div>
+      
     );
   }
 }
