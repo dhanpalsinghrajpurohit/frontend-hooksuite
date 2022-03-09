@@ -5,11 +5,12 @@
   box-sizing: border-box;
 }
 body {
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to bottom right,
     rgb(92, 128, 246),
     rgb(250, 110, 67)
-  ) !important;
+  ) !important; */
+  background-color: #ebdbdb;
   min-height: 100vh;
   display: flex;
   font-weight: 800;

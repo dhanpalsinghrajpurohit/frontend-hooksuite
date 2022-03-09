@@ -55,6 +55,8 @@ export default class Login extends Component {
               className="form-control"
               placeholder="Enter username"
               onChange = {this.Email}
+              minLength={10}
+              required
             />
           </div>
 
@@ -65,6 +67,8 @@ export default class Login extends Component {
               className="form-control"
               placeholder="Enter password"
               onChange = {this.Password}
+              minLength={8}
+              required
             />
           </div>
 

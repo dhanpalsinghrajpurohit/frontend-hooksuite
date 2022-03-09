@@ -1,0 +1,8 @@
+.avatar {
+    background-image: url("https://lh3.googleusercontent.com/-Sk6Jo31Slvk/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucmiNCCgKAI-gE4DFc6OmdaLr2x2oA/photo.jpg");
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-position: top center;
+    border-radius: 50%;
+}

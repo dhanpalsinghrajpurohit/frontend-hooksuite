@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import axios from "axios";
 import { withRouter } from "react-router";
-import { useState } from "react";
+import DateTimePicker from 'react-datetime-picker';
 
 import Navbar from "../../components/Navbar/Navbar";
 import classes from "./Post.module.css";
@@ -19,7 +19,8 @@ class Post extends Component{
             Tags:"testing",
             Message:null,
             authUrl:'',
-            toggleStage:1
+            toggleStage:1,
+            date:new Date()
         }
         
         this.Title = this.Title.bind(this);  
@@ -44,12 +45,16 @@ class Post extends Component{
     File(event) {
       this.setState({ File: event.target.files[0] })
     }
-      componentDidMount() {
-        if(this.count==0){
-          window.addEventListener('load', this.authUser);
-        }
-        this.loadTwiiterForm();
-     }
+    componentDidMount() {
+      if(this.count==0){
+        window.addEventListener('load', this.authUser);
+      }
+      this.loadTwiiterForm();
+    }
+
+    getDate(value){
+      this.setState({date:value})
+    }
     authUser = async (event) =>{
       event.preventDefault();
       let res = await axios.get('http://localhost:5000/postauth');
@@ -88,9 +93,6 @@ class Post extends Component{
         })
           
       };
-    
-
-   
     
     callback(event){
       // axios
@@ -203,7 +205,19 @@ class Post extends Component{
             <form onSubmit="" method="POST" encType="multipart/form-data">
             <div className="form-group">
                 <label for="txt_title">Description</label>
-                <input type="text" className="form-control" id="txt_title" onChange={this.Title} />
+                <input type="text" className="form-control" 
+                    id="txt_title" 
+                    onChange={this.Title} 
+                    placeholder="Enter Description"/>
+            </div>
+            <div className="form-group">
+              <label for="txt_date" >Schedule </label>
+              <DateTimePicker className="mx-auto form-control"
+                      id="txt_date"
+                      format="dd/MM/yyyy"
+                      onChange={(date)=>this.getDate(date)} 
+                      disableClock={true}
+                      value={this.state.date} />
             </div>
             <div className="form-group">
                 <label for="input_file">Select Your Post</label>
@@ -258,7 +272,7 @@ class Post extends Component{
             <React.Fragment>
                 <Navbar />
                 <div className={classes.postForm}>
-                    <div className="col-4 offset-lg-2 mx-auto">
+                    <div className="col-8 offset-lg-2 mx-auto">
                         {alertBox}
                         <div>
                           <ul class="nav nav-pills nav-justified">
@@ -271,6 +285,7 @@ class Post extends Component{
                                 aria-controls="pills-contact" 
                                 aria-selected="false"
                                 onClick={() => this.toggleTab(1)}>Twitter</button>
+
                             </li>
 
                             <li className="nav-item">

@@ -2,7 +2,7 @@ import react from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
 
-
+import classes from  "./Navbar.module.css";
 class Navbar extends Component{
     constructor(props){
         super(props);
@@ -25,21 +25,21 @@ class Navbar extends Component{
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a className={this.state.toggle===1?"nav-link active":"nav-link"} href="#" onClick={()=>this.toggleStage(1)}>Home</a>
+                            <Link to="/home" className={this.state.toggle===1?"nav-link active bold":"nav-link"} href="#" onClick={()=>this.toggleStage(1)}>Home</Link>
                         </li>
                         <li class="nav-item">
-                            <a className={this.state.toggle===2?"nav-link active":"nav-link"} href="#" onClick={()=>this.toggleStage(2)}>Publish</a>
+                            <Link to="/publish" className={this.state.toggle===2?"nav-link active":"nav-link"} href="#" onClick={()=>this.toggleStage(2)}>Publish</Link>
                         </li>
                         <li class="nav-item">
-                            <a className={this.state.toggle===3?"nav-link active":"nav-link"} href="#" onClick={()=>this.toggleStage(3)}>Analysis</a>
+                            <Link to="/analysis" className={this.state.toggle===3?"nav-link active":"nav-link"} href="#" onClick={()=>this.toggleStage(3)}>Analysis</Link>
                         </li>
                         <li class="nav-item">
-                            <a className={this.state.toggle===4?"nav-link active":"nav-link"} href="#" onClick={()=>this.toggleStage(4)}>Enage</a>
+                            <Link to="/Enage" className={this.state.toggle===4?"nav-link active":"nav-link"} href="#" onClick={()=>this.toggleStage(4)}>Enage</Link>
                         </li>
                         </ul>
                     </div>
                     <ul className="navbar-nav ml-auto">
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <Link className="nav-link" to={"/sign-in"}>
                                 Login
                             </Link>
@@ -48,7 +48,9 @@ class Navbar extends Component{
                             <Link className="nav-link" to={"/sign-up"}>
                                 Sign up
                             </Link>
-                        </li>
+                        </li> */}
+                        <li className={classes.avatar}>
+                        </li><p className="m-2">Dhanpal Singh</p>
                     </ul>
                 </nav>
             </react.Fragment>
